@@ -5,7 +5,7 @@
 ### SQL Projects
 
 [Travel warnings: SQL analysis](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+<img src="images/SQL project thumbnail - travel warnings.png?raw=true"/>
 
 ---
 [Project 2 Title](/projects/sample_presentation.pdf)
