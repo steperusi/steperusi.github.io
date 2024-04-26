@@ -4,7 +4,7 @@
 
 ### SQL Projects
 
-[Travel warnings: SQL analysis](/projects/SQL Project - Travel warnings.pdf)
+[Travel warnings: SQL analysis](/projects/SQL_Project_Travel_warnings.pdf)
 <img src="images/SQL project thumbnail - travel warnings.png?raw=true"/>
 
 ---
