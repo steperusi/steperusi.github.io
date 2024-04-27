@@ -20,23 +20,15 @@
 
 ### Python Automation Projects
 
-[News automator project](/projects/news_automator.md)
+[News automator](/projects/news_automator.md)
 
 <img src="images/news_automator_thumbnail.png?raw=true"/>
 
----
+[YouTube Video Downloader](/projects/youtube_downloader.md)
 
-### Category Name 2
-
-- [Project 1 Title](http://example.com/)
-- [Project 2 Title](http://example.com/)
-- [Project 3 Title](http://example.com/)
-- [Project 4 Title](http://example.com/)
-- [Project 5 Title](http://example.com/)
-
----
+<img src="images/youtube_downloader_thumbnail.png?raw=true"/>
 
 
 
 
----
+
