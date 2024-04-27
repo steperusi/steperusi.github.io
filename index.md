@@ -20,7 +20,7 @@
 
 ### Python Automation Projects
 
-[News automator project](/projects/news_automator.ipynb)
+[News automator project](/projects/news_automator.md)
 
 <img src="images/news_automator_thumbnail.png?raw=true"/>
 
