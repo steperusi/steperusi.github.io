@@ -44,5 +44,6 @@ download_video(video_url, folder)
 ---
 
 **Final considerations**
+
 * While this project is straightforward in its current form, there is still ample opportunity for improvement to enhance its functionality and user experience.
 * Despite its simplicity, the project has proven its practical value, as evidenced by personal usage experiences.
