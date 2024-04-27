@@ -6,6 +6,7 @@ description: > # your text below (remove <br> elements if you don't need line br
   Second description 
   <br><br>
   <a href="https://www.linkedin.com/in/stefano-perusi/">View My LinkedIn Profile</a> 
+  [View My Linkedin Profile](https://www.linkedin.com/in/stefano-perusi/)
   
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
