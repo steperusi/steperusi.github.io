@@ -84,7 +84,7 @@ def get_sources_by_category(category):
 ```
 ---
 
-In this code the program is run:
+In this cell the program is run:
 1. Ask the user what action he wants to execute
 2. Run the function that corresponds to the user's input
 
