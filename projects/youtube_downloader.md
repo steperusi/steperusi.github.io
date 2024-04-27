@@ -1,110 +1,48 @@
 ## Youtube Video Downloader Python Project
 
+---
+
 **Project description**
 
 The YouTube Video Downloader is a Python project developed to enable users to download videos from YouTube effortlessly. This project provides a convenient solution for users to access videos offline.
 
 ---
 
-Import the necessary libraries
+Import the library YouTube from pytube
 
 ```python
-import requests
-from sys import argv
+from pytube import YouTube
 ```
 ---
 
-Provide the url to the API and the API key.
+Create the function download_video, which represents the core of the software.
 
 ```python
-url = 'https://newsapi.org/v2/top-headlines?'
-api_key = 'api_key_code' # I don't write the actual API key here because it's connected to my accounts on newsapi.org
+def download_video(url, save_path):
+    try:
+        yt = YouTube(url)
+        streams = yt.streams.filter(progressive=True, file_extension='mp4')
+        highest_res_stream = streams.get_highest_resolution()
+        highest_res_stream.download(output_path=save_path)
+        print('Video downloaded successfully!')
+    except Exception as e:
+        print(e)
 ```
 ---
 
-Create the function _get_articles, that prints titles and urls of the articles based on given parameters
+In this cell the software is executed, taking as input the url of the YouTube video.
 
 ```python
-def _get_articles(params):
-    response = requests.get(url, params=params)
-    articles = response.json()['articles']
-    
-    results = []
-    
-    for article in articles:
-        results.append({'title':article['title'], 'url':article['url']})
-        
-    for result in results:
-        print(result['title'])
-        print(result['url'])
+video_url = input('Enter a YouTube url: ')
+
+folder = 'Downloads'
+
+print('Started download...')
+download_video(video_url, folder)
 ```
+
 ---
 
-Create the function get_articles_by_category, that calls the function _get_articles with parameters based on a category
-
-```python
-def get_articles_by_category(category):
-    query_parameters = {'category' : category,
-                       'sortBy' : 'top',
-                       'country' : 'it',
-                       'apiKey' : api_key,
-                       'pageSize' : 10}
-    return _get_articles(query_parameters)
-```
----
-
-Create function get_articles_by_query, that calls the function _get_articles with parameters based on a query
-
-```python
-def get_articles_by_query(query):
-    query_parameters = {'q' : query,
-                       'sortBy' : 'top',
-                       'country' : 'it',
-                       'apiKey' : api_key,
-                       'pageSize' : 10}
-    return _get_articles(query_parameters)
-```
----
-
-Create function get_sources_by_category, that prints titles and urls of the sources where News API gets its information from
-```python
-def get_sources_by_category(category):
-    url = 'https://newsapi.org/v2/top-headlines/sources'
-    
-    query_parameters = {'category': category,
-                        'apiKey': api_key,
-                       'pageSize' : 10}
-
-    response = requests.get(url, params=query_parameters)
-    sources = response.json()['sources']
-
-    for source in sources:
-        print(source['name'])
-        print(source['url'])
-```
----
-
-In this cell the program is run:
-1. Ask the user what action he wants to execute
-2. Run the function that corresponds to the user's input
-
-```python
-print("Digit the number of the operation you want to execute:")
-print("1) Get articles by category")
-print("2) Get articles by query")
-print("3) Get sources by category")
-
-operation = int(input())
-
-if operation == 1:
-    category = input('What argument do you want to search? ')
-    get_articles_by_category(category)
-elif operation == 2:
-    query = input('What argument do you want to search? ')
-    get_articles_by_query(query)
-elif operation == 3:
-    category = input('What category do you want to search? ')
-    get_sources_by_category(category)
-else:
-    print('Invalid input')
-```
+**Final considerations**
+* While this project is straightforward in its current form, there is still ample opportunity for improvement to enhance its functionality and user experience.
+* Despite its simplicity, the project has proven its practical value, as evidenced by personal usage experiences.
