@@ -18,8 +18,8 @@
 
 ### Python Automation Projects
 
-[Project 3 Title](http://example.com/)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[News automator project](/projects/news_automator.ipynb)
+<img src="images/news_automator_thumbnail.png?raw=true"/>
 
 ---
 
