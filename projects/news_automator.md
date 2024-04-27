@@ -3,9 +3,7 @@
 **Project description**
 
 The News Automator is a Python project designed to streamline the process of gathering, processing, and presenting news articles from various sources using the News API. This project aims to provide the user with a convenient way to access up-to-date news content tailored to their preferences, all within a single application.
-
 ---
-
 Import the necessary libraries
 
 ```python
