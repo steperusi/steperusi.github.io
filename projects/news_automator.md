@@ -13,7 +13,6 @@ import requests
 from sys import argv
 ```
 ---
-
 I provide the url to the API and the API key.
 
 ```python
