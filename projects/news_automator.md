@@ -111,9 +111,11 @@ else:
     print('Invalid input')
 ```
 
+---
 
+**Final considerations**
 
+* This project 
 
-
-
-
+* This project has not only been useful for aggregating news but has also provided a practical learning experience in API integration.
+* Moreover, the project has significant potential for future expansion, allowing for the incorporation of additional features and functionalities to further enhance its utility and educational value, for example incorporating a machine learning reccomendation system which finds out news the user might be interested in.
