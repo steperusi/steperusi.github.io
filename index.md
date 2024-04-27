@@ -11,7 +11,7 @@
 
 ### Excel Projects
 
-[Coffee orders: Excel dashboard](https://drive.google.com/drive/folders/19vFRcfiDYtC-Gja0b5yzv31EQ9Rg0t-f?usp=sharing)
+[Coffee sales: Excel dashboard](https://drive.google.com/drive/folders/19vFRcfiDYtC-Gja0b5yzv31EQ9Rg0t-f?usp=sharing)
 <img src="images/excel_project_thumbnail_coffee.png?raw=true"/>
 
 ---
