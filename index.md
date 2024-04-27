@@ -15,6 +15,9 @@
 <img src="images/excel_project_thumbnail_coffee.png?raw=true"/>
 
 ---
+
+### Python Automation Projects
+
 [Project 3 Title](http://example.com/)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
