@@ -8,8 +8,11 @@
 <img src="images/SQL project thumbnail - travel warnings.png?raw=true"/>
 
 ---
-[Project 2 Title](/projects/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+
+### Excel Projects
+
+[Coffee orders: Excel dashboard](https://drive.google.com/drive/folders/19vFRcfiDYtC-Gja0b5yzv31EQ9Rg0t-f?usp=sharing)
+<img src="images/excel_project_coffee_orders.png?raw=true"/>
 
 ---
 [Project 3 Title](http://example.com/)
