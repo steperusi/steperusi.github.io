@@ -2,6 +2,14 @@
 
 ---
 
+### Machine Learning Projects
+
+[Wine classifier: ML model](/projects/machine_learning_wine.ipynb)
+
+<img src="images/thumbnail_wine.png?raw=True"/>
+
+---
+
 ### SQL Projects
 
 [Travel warnings: SQL analysis](/projects/SQL_Project_Travel_warnings.pdf)
