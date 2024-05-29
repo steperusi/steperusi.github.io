@@ -10,6 +10,14 @@
 
 ---
 
+### Tableau Projects
+
+[Netflix dashboard: Data analysis and visualization on Tableau](/projects/Tableau_Project_Netflix/Tableau_Project_Netflix.pdf)
+
+<img src="images/?raw=True"/>
+
+---
+
 ### SQL Projects
 
 [Travel warnings: SQL analysis](/projects/SQL_Project_Travel_warnings.pdf)
