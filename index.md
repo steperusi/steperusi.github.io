@@ -14,7 +14,7 @@
 
 [Netflix dashboard: Data analysis and visualization on Tableau](/projects/Tableau_Project_Netflix/Tableau_Project_Netflix.pdf)
 
-<img src="images/?raw=True"/>
+<img src="images/thumbnail_netflix.png?raw=True"/>
 
 ---
 
