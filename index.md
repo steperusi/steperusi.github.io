@@ -10,6 +10,14 @@
 
 ---
 
+### SQL Projects
+
+[Travel warnings: SQL analysis](/projects/SQL_Project_Travel_warnings.pdf)
+
+<img src="images/SQL project thumbnail - travel warnings.png?raw=true"/>
+
+---
+
 ### Tableau Projects
 
 [Netflix dashboard: Data analysis and visualization on Tableau](/projects/Tableau_Project_Netflix/Tableau_Project_Netflix.pdf)
