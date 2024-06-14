@@ -4,6 +4,10 @@
 
 ### Machine Learning Projects
 
+[Clients satisfaction prediction model](/projects/ML_clients_satisfaction.ipynb)
+
+<img src="images/thumbnail_airline_satisfaction.png?raw=True"/>
+
 [Wine classifier: ML model](/projects/machine_learning_wine.ipynb)
 
 <img src="images/thumbnail_wine.png?raw=True"/>
