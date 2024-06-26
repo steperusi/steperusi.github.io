@@ -8,6 +8,10 @@
 
 <img src="images/thumbnail_airline_satisfaction.png?raw=True"/>
 
+[Breast cancer prediction model](https://breastcancerpredict-steperusi.streamlit.app/)
+
+<img src="images/cancer_app_thumbnail.png?raw=True"/>
+
 [Wine classifier: ML model](/projects/machine_learning_wine.ipynb)
 
 <img src="images/thumbnail_wine.png?raw=True"/>
