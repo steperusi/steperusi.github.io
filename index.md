@@ -34,6 +34,8 @@
 
 [King County House Prices: Data visualization on tableau](https://public.tableau.com/views/house_prices_17144965360530/KingCountyHouseSales?:language=it-IT&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
+<img src="images/House_prices_thumbnail.png?raw=True"/>
+
 ---
 
 ### Excel Projects
