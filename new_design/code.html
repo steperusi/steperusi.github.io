@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stefano Perusi - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-tint": "#c0c1ff",
+                        "surface-container-high": "#2a2a2a",
+                        "outline": "#908fa0",
+                        "on-tertiary": "#4f2500",
+                        "on-primary-fixed": "#07006c",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "on-secondary": "#233144",
+                        "on-primary-container": "#0d0096",
+                        "secondary": "#b9c7df",
+                        "surface-variant": "#353534",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-primary": "#1000a9",
+                        "tertiary-fixed": "#ffdcc5",
+                        "primary-container": "#8083ff",
+                        "on-tertiary-container": "#452000",
+                        "primary-fixed": "#e1e0ff",
+                        "error": "#ffb4ab",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "indigo-mute": "#312E81",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-primary": "#494bd6",
+                        "secondary-container": "#3c4a5e",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "outline-variant": "#464554",
+                        "secondary-fixed": "#d5e3fc",
+                        "surface-dim": "#131313",
+                        "surface-container-highest": "#353534",
+                        "slate-elevated": "#2D2D2D",
+                        "on-secondary-container": "#abb9d1",
+                        "surface-container": "#201f1f",
+                        "on-background": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "primary": "#c0c1ff",
+                        "slate-surface": "#1E1E1E",
+                        "error-container": "#93000a",
+                        "background": "#131313",
+                        "on-tertiary-fixed": "#301400",
+                        "tertiary-container": "#d97721",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-surface-variant": "#c7c4d7",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary": "#ffb783",
+                        "surface-bright": "#393939"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "section-gap-lg": "120px",
+                        "container-max": "1200px",
+                        "section-gap-sm": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-xl-mobile": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl-mobile": ["40px", { "lineHeight": "1.1", "fontWeight": "800" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid theme('colors.glass-border');
+        }
+        .skill-tag {
+            background: rgba(185, 199, 223, 0.1);
+            border: 1px solid rgba(185, 199, 223, 0.2);
+            color: theme('colors.secondary');
+        }
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.02);
+            background: theme('colors.slate-elevated');
+            border-color: theme('colors.primary');
+        }
+        .timeline-line {
+            width: 1px;
+            background: theme('colors.slate-elevated');
+            position: absolute;
+            left: 12px;
+            top: 24px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl docked full-width top-0 z-50 sticky border-b border-glass-border shadow-sm">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface">
+                Stefano Perusi
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-md" href="#experience">Experience</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-md" href="#skills">Skills</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-md" href="#projects">Projects</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-md" href="#education">Education</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface transition-colors text-label-md font-label-md hover:bg-white/5 transition-all duration-300 px-3 py-2 rounded-md" href="#contact">Contact</a>
+</div>
+<div class="hidden md:flex">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-90 scale-95 active:scale-90 transition-transform">
+                    Resume
+                </button>
+</div>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-6 z-10">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
+                    Aspiring <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Software Engineer</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Passionate about building systems that solve real problems. Focused on data analysis, machine learning, and low-level programming.
+                </p>
+<div class="flex gap-4 pt-4">
+<a class="glass-panel px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-white/5 transition-colors" href="https://github.com/steperusi" target="_blank">
+<span class="material-symbols-outlined text-on-surface">code</span>
+<span class="font-label-md text-label-md text-on-surface">GitHub</span>
+</a>
+<a class="glass-panel px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-white/5 transition-colors" href="https://www.linkedin.com/in/stefano-perusi/" target="_blank">
+<span class="material-symbols-outlined text-on-surface">work</span>
+<span class="font-label-md text-label-md text-on-surface">LinkedIn</span>
+</a>
+</div>
+</div>
+<div class="flex-1 relative flex justify-center z-0">
+<div class="absolute inset-0 bg-primary/20 blur-[100px] rounded-full"></div>
+<img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-slate-elevated relative z-10 grayscale hover:grayscale-0 transition-all duration-500" data-alt="A professional headshot of Stefano Perusi, a young aspiring software engineer, wearing a white shirt against a dark slate background, conveying competence and precision in a modern technical style." src="https://lh3.googleusercontent.com/aida/AP1WRLuQgn2DsbjO-Msik_3AMJ21vIUqUo4vGbnY8tMjo-Wj-LOeZLGwt6Kw8jlfcyURUCTKFAT-wXR7reTXazaXBPnBibFD35elGYgEoKqJhchnqm2DVI17VjjJd8CWP3ZcIas18SzKePqW-daLkkLqc0uCFoTI1lHtyudIqkUMofn-SVROBzIws0g0Swi6WrxS9bgMX6_wMxtrqIOCYbJB9ZyAR6gU6tCglp2V9LH-QRPUbAU9drJgzGCXBqx1"/>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="bg-slate-surface py-12 px-gutter border-y border-glass-border">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<div class="space-y-2">
+<div class="font-headline-lg text-headline-lg text-primary">2+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Years of Experience</div>
+</div>
+<div class="space-y-2">
+<div class="font-headline-lg text-headline-lg text-primary">5+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Github Repos</div>
+</div>
+<div class="space-y-2">
+<div class="font-headline-lg text-headline-lg text-primary">200+</div>
+<div class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Github Contributions</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="skills">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-12 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">build</span>
+                Skills &amp; Technologies
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="glass-panel bg-slate-surface p-8 rounded-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-glass-border pb-4">Programming Languages</h3>
+<div class="flex flex-wrap gap-3">
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Python</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">SQL</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">C</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">C++</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">HTML</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">CSS</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">JavaScript</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Java</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">R</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">LaTeX</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Matlab</span>
+</div>
+</div>
+<div class="glass-panel bg-slate-surface p-8 rounded-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-glass-border pb-4">Technologies &amp; Frameworks</h3>
+<div class="flex flex-wrap gap-3">
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Git</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">GitHub</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Pandas</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">PostgreSQL</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">MySQL</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">NumPy</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Matplotlib</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Scikit-learn</span>
+<span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Google Analytics</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section class="bg-slate-surface py-section-gap-lg px-gutter border-y border-glass-border" id="projects">
+<div class="max-w-container-max mx-auto">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-12 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">code_blocks</span>
+                    Featured Projects
+                </h2>
+<div class="flex flex-row overflow-x-auto gap-8 pb-4 no-scrollbar">
+<!-- Project 1 -->
+<a class="project-card bg-background rounded-xl overflow-hidden border border-glass-border flex flex-col h-full block min-w-[400px]" href="https://github.com/steperusi/steperusi.github.io/blob/main/projects/machine_learning_wine.ipynb">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stylized technical illustration showing various chemical flasks and data charts representing wine classification through machine learning, set against a muted vintage background with modern technical overlays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC32GrcOOy8mCHRtYYRaUSYK9LHvxHlfBq5uEoKtvE-GBgWeu6BKj4mgDrqZykl9jjiuPkjcG2EhHCBY6GnbKLy-BEZ8OfjuV_M7l8zEeF1FRfcMJnU9oLXOsvlg1pJbYVfjjymRrcYxhrtadtNrTI64pMhE3ytpJuuluYotoQw1RmH1pHCWxYLFTSzKmxYRtLuENDbqHF0p7jf0_meVfGZYbh0Rpkiyk6_8U2WYX4NL1UFQrbXJJGE0g"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Wine Quality Prediction</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Machine learning model to predict wine quality based on various chemical properties.</p>
+<div class="mt-4 flex gap-2">
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Python</span>
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Scikit-learn</span>
+</div>
+</div>
+</a>
+<!-- Project 2 -->
+<a class="project-card bg-background rounded-xl overflow-hidden border border-glass-border flex flex-col h-full block min-w-[400px]" href="https://github.com/steperusi/steperusi.github.io/blob/main/projects/ML_clients_satisfaction.ipynb">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An illustrative graphic of a commercial airplane flying over a stylized digital survey form, representing airline customer satisfaction analysis in a clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpjIhw9CRvLEWrLA7ZM8Z84bqSXbCJJ2jNUmUUYxUlQpfJU_tRxQwiD5dUFV-4o-uQGmZnkGK2uEgHo3GKjYRsZHdB-FrENNml9GMYZgr0aZMvsSvU8h6SsevXZ6z_tJbXo6__O4UoIWVEgCQYVpiSAymVzMJL5ae0kYIFh67e6h_GLUmCCAhjJ8DRCpXGl3MbZcQZcZ-pXYtZbGEV4wyLfGf9K9A41HRwhFMmIpWwOtRghF8hIb7t_g"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Airline Customer Satisfaction Analysis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Machine learning model to predict and analyze customer satisfaction in the airline industry.</p>
+<div class="mt-4 flex gap-2">
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Python</span>
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Pandas</span>
+</div>
+</div>
+</a>
+<!-- Project 3 -->
+<a class="project-card bg-background rounded-xl overflow-hidden border border-glass-border flex flex-col h-full block min-w-[400px]" href="https://github.com/steperusi/steperusi.github.io/blob/main/projects/SQL_Project_Travel_warnings.pdf">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist presentation slide titled 'Travel warnings: SQL analysis' with crisp dark text on a light background, highlighting data analysis of dangerous travel states." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5zHxGcb1A7a7YGU3VioJOA_DNOKflThb4NLmaQkuCVXO6_SbHObYcF21fP1zb6kLnG7aJeJxCnuRhW5L1tv3kLI1EgS6Guex6Hdb8UoZEsd5lR-PNpQnGON_2_nFs4Zb2dPKn07jXrdUJyKRCBkGfxm-ueKbJ5hlll9uA7igSqOz2moTYielpIl138CgfX_jp_uB-cw-WFOJJkqLQt_OdzbP1lOG5keimrEoTZfzOCsT-f6zmBe1WQw"/>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">SQL Data Analysis Project</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow">Comprehensive data analysis project using SQL, including data cleaning and ERD modeling.</p>
+<div class="mt-4 flex gap-2">
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">SQL</span>
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">PostgreSQL</span>
+</div>
+</div>
+</a>
+<div class="project-card bg-background rounded-xl overflow-hidden border border-glass-border flex flex-col h-full min-w-[400px] opacity-60 grayscale"><div class="h-48 bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-outline">hourglass_empty</span></div><div class="p-6 flex-grow flex flex-col"><h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Coming Soon</h3><p class="font-body-md text-body-md text-on-surface-variant flex-grow">A new exciting project is currently in development. Stay tuned for updates.</p><div class="mt-4 flex gap-2"><span class="skill-tag px-2 py-1 rounded text-xs font-label-md">In Progress</span></div></div></div><div class="project-card bg-background rounded-xl overflow-hidden border border-glass-border flex flex-col h-full min-w-[400px] opacity-60 grayscale"><div class="h-48 bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-outline">rocket_launch</span></div><div class="p-6 flex-grow flex flex-col"><h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Future Project</h3><p class="font-body-md text-body-md text-on-surface-variant flex-grow">Exploring new frontiers in software engineering and data science.</p><div class="mt-4 flex gap-2"><span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Planned</span></div></div></div></div>
+</div>
+</section>
+<!-- Experience & Education -->
+<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="experience">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<!-- Experience -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-10 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">work_history</span>
+                        Experience
+                    </h2>
+<div class="relative pl-8 space-y-12">
+<div class="timeline-line"></div>
+<div class="relative">
+<div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-surface border-2 border-primary z-10"></div>
+<div class="glass-panel bg-slate-surface p-6 rounded-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Software Support Technician &amp; Data Analyst</h3>
+<div class="text-primary font-label-md mb-4 mt-1"><a class="hover:underline" href="https://www.dao.it/" target="_blank">DAO Cooperativa</a></div>
+<div class="flex gap-2 mb-4">
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Excel</span>
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Python</span>
+<span class="skill-tag px-2 py-1 rounded text-xs font-label-md">Fly Board</span>
+</div>
+<ul class="list-none space-y-2 text-on-surface-variant font-body-md text-body-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                        Support stores resolving software issues and integrating new products and promotions
+                                    </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                        Analyze data to generate insights supporting decision-making
+                                    </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                        Develop and maintain business reports and dashboards about stores and products performance
+                                    </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Education -->
+<div id="education">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-10 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">school</span>
+                        Education
+                    </h2>
+<div class="relative pl-8 space-y-8">
+<div class="timeline-line"></div>
+<div class="relative">
+<div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-surface border-2 border-primary z-10"></div>
+<div class="glass-panel bg-slate-surface p-6 rounded-xl">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Bachelor's degree in Computer Science</h3>
+<div class="text-primary font-label-md mb-3 mt-1"><a class="hover:underline" href="https://www.corsi.univr.it/?ent=cs&amp;id=420" target="_blank">University of Verona</a></div>
+<p class="text-on-surface-variant font-body-md text-body-md flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                    Deepening knowledge in many computer science subjects
+                                </p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -left-10 top-1 w-5 h-5 rounded-full bg-surface border-2 border-outline z-10"></div>
+<div class="glass-panel bg-slate-surface p-6 rounded-xl opacity-80">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">High School Diploma</h3>
+<div class="text-on-surface-variant font-label-md mb-3 mt-1">Management, Finance and Marketing - IIS L. Calabrese P. Levi</div>
+<ul class="list-none space-y-2 text-on-surface-variant font-body-md text-body-md">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                        Developed knowledge about economics, finance, accounting and law
+                                    </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm mt-1 text-secondary">commit</span>
+                                        Participated in an Erasmus project focused on technology and coding
+                                    </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-surface dark:bg-slate-surface full-width py-section-gap-sm border-t border-outline-variant flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max mx-auto gap-8">
+<div class="text-headline-sm font-headline-sm text-on-surface">
+                Stefano Perusi
+            </div>
+<div class="flex gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md opacity-80 hover:opacity-100 flex items-center gap-2" href="https://github.com/steperusi">
+<span class="material-symbols-outlined">code</span>
+                    GitHub
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md opacity-80 hover:opacity-100 flex items-center gap-2" href="https://www.linkedin.com/in/stefano-perusi/">
+<span class="material-symbols-outlined">work</span>
+                    LinkedIn
+                </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md opacity-80 hover:opacity-100 flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">mail</span>
+                    Email
+                </a>
+</div>
+<div class="text-body-md font-body-md text-secondary dark:text-secondary">
+                © 2024 Stefano Perusi. Built with precision.
+            </div>
+</div>
+</footer>
+</body></html>
