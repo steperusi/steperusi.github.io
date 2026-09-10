@@ -143,6 +143,15 @@
                 width: 0;
                 height: 0;
             }
+                #hero-bg-canvas{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 0;
+                }
     </style>
 </head>
 <body id="top" class="antialiased min-h-screen flex flex-col font-body-md text-body-md bg-background text-on-surface">
@@ -170,7 +179,8 @@
 </nav>
 <main class="flex-grow">
 <!-- Hero Section -->
-<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+<section class="relative overflow-hidden bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
+    <canvas id="hero-bg-canvas"></canvas>
 <div class="flex-1 space-y-6 z-10">
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
                     SOFTWARE DEVELOPER
@@ -461,6 +471,107 @@ document.addEventListener('DOMContentLoaded', function(){
         clearTimeout(wheelTimeout);
         wheelTimeout = setTimeout(()=> isInteracting = false, 300);
     }, {passive:true});
+
+    requestAnimationFrame(step);
+});
+</script>
+<script>
+// Hero animated background: points connected by lines, rotating in pseudo-3D
+document.addEventListener('DOMContentLoaded', function(){
+    const canvas = document.getElementById('hero-bg-canvas');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const DPR = window.devicePixelRatio || 1;
+
+    function resize(){
+        const w = canvas.clientWidth || canvas.offsetWidth;
+        const h = canvas.clientHeight || canvas.offsetHeight;
+        canvas.width = Math.max(300, Math.floor(w * DPR));
+        canvas.height = Math.max(150, Math.floor(h * DPR));
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // create points in normalized space
+    const N = 36;
+    const points = [];
+    const areaW = () => canvas.clientWidth || canvas.offsetWidth;
+    const areaH = () => canvas.clientHeight || canvas.offsetHeight;
+    for(let i=0;i<N;i++){
+        points.push({
+            x: Math.random()*areaW(),
+            y: Math.random()*areaH(),
+            z: Math.random()*800 - 400
+        });
+    }
+
+    let angle = 0;
+    function project(p, angle){
+        const cx = areaW()/2;
+        const cy = areaH()/2;
+        // rotate around Y (using X/Z) and around X (using Y/Z) to simulate 3D
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+        const cosB = Math.cos(angle*0.6);
+        const sinB = Math.sin(angle*0.6);
+
+        const dx = p.x - cx;
+        const dy = p.y - cy;
+        // Y-axis rotation
+        const rx = cosA * dx - sinA * p.z;
+        const rz = sinA * dx + cosA * p.z;
+        // X-axis rotation
+        const ry = cosB * dy - sinB * rz;
+        const rz2 = sinB * dy + cosB * rz;
+
+        const perspective = 600 / (600 + rz2);
+        return { x: cx + rx * perspective, y: cy + ry * perspective, scale: perspective };
+    }
+
+    function step(t){
+        const w = areaW();
+        const h = areaH();
+        ctx.clearRect(0,0,w,h);
+        angle += 0.0018; // rotation speed
+
+        // slight organic motion per point
+        for(let i=0;i<points.length;i++){
+            const p = points[i];
+            p.x += Math.sin((t/1000) + i) * 0.12;
+            p.y += Math.cos((t/1200) + i*1.1) * 0.08;
+        }
+
+        const proj = points.map(p => project(p, angle));
+
+        // draw lines between nearby points
+        for(let i=0;i<proj.length;i++){
+            for(let j=i+1;j<proj.length;j++){
+                const a = proj[i];
+                const b = proj[j];
+                const dx = a.x - b.x;
+                const dy = a.y - b.y;
+                const dist = Math.hypot(dx, dy);
+                if(dist < 160){
+                    const alpha = (1 - dist/160) * 0.6 * Math.min(a.scale, b.scale);
+                    ctx.strokeStyle = `rgba(192,193,255,${alpha})`;
+                    ctx.lineWidth = 1 * (a.scale + b.scale) * 0.6;
+                    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                }
+            }
+        }
+
+        // draw nodes
+        for(let i=0;i<proj.length;i++){
+            const p = proj[i];
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(192,193,255,${0.9 * p.scale})`;
+            ctx.arc(p.x, p.y, 3.5 * p.scale, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        requestAnimationFrame(step);
+    }
 
     requestAnimationFrame(step);
 });
