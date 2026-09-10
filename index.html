@@ -143,7 +143,7 @@
                 width: 0;
                 height: 0;
             }
-                #hero-bg-canvas{
+                .animated-bg-canvas{
                     position: absolute;
                     left: 0;
                     top: 0;
@@ -180,7 +180,7 @@
 <main class="flex-grow">
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-12">
-    <canvas id="hero-bg-canvas"></canvas>
+    <canvas class="animated-bg-canvas"></canvas>
 <div class="flex-1 space-y-6 z-10">
 <h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-surface">
                     SOFTWARE DEVELOPER
@@ -222,12 +222,14 @@
 </div>
 </section>
 <!-- Skills Section -->
-<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="skills">
-<h2 class="font-headline-md text-headline-md text-on-surface mb-12 flex items-center gap-4">
-<span class="material-symbols-outlined text-primary text-3xl">build</span>
-                Skills &amp; Technologies
-            </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<section class="relative overflow-hidden bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="skills">
+    <canvas class="animated-bg-canvas"></canvas>
+    <div class="relative z-10">
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-12 flex items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-3xl">build</span>
+                        Skills &amp; Technologies
+                    </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 <div class="glass-panel bg-slate-surface p-8 rounded-xl">
 <h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-glass-border pb-4">Programming Languages</h3>
 <div class="flex flex-wrap gap-3">
@@ -258,8 +260,9 @@
 <span class="skill-tag px-4 py-2 rounded-full font-label-md text-label-md">Google Analytics</span>
 </div>
 </div>
-</div>
-</section>
+        </div>
+    </div>
+    </section>
 <!-- Projects Section -->
 <section class="bg-slate-surface py-section-gap-lg px-gutter border-y border-glass-border" id="projects">
 <div class="max-w-container-max mx-auto">
@@ -314,8 +317,10 @@
 </div>
 </section>
 <!-- Experience & Education -->
-<section class="bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="experience">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<section class="relative overflow-hidden bg-background py-section-gap-lg px-gutter max-w-container-max mx-auto" id="experience">
+    <canvas class="animated-bg-canvas"></canvas>
+    <div class="relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
 <!-- Experience -->
 <div>
 <h2 class="font-headline-md text-headline-md text-on-surface mb-10 flex items-center gap-4">
@@ -476,104 +481,89 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 <script>
-// Hero animated background: points connected by lines, rotating in pseudo-3D
+/* Initialize animated backgrounds on all canvases with class .animated-bg-canvas */
 document.addEventListener('DOMContentLoaded', function(){
-    const canvas = document.getElementById('hero-bg-canvas');
-    if(!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const DPR = window.devicePixelRatio || 1;
+    const canvases = Array.from(document.querySelectorAll('.animated-bg-canvas'));
+    if(!canvases.length) return;
 
-    function resize(){
-        const w = canvas.clientWidth || canvas.offsetWidth;
-        const h = canvas.clientHeight || canvas.offsetHeight;
-        canvas.width = Math.max(300, Math.floor(w * DPR));
-        canvas.height = Math.max(150, Math.floor(h * DPR));
-        ctx.setTransform(DPR,0,0,DPR,0,0);
-    }
-    resize();
-    window.addEventListener('resize', resize);
+    canvases.forEach(initCanvas);
 
-    // create points in normalized space
-    const N = 36;
-    const points = [];
-    const areaW = () => canvas.clientWidth || canvas.offsetWidth;
-    const areaH = () => canvas.clientHeight || canvas.offsetHeight;
-    for(let i=0;i<N;i++){
-        points.push({
-            x: Math.random()*areaW(),
-            y: Math.random()*areaH(),
-            z: Math.random()*800 - 400
-        });
-    }
+    function initCanvas(canvas){
+        const ctx = canvas.getContext('2d');
+        const DPR = window.devicePixelRatio || 1;
 
-    let angle = 0;
-    function project(p, angle){
-        const cx = areaW()/2;
-        const cy = areaH()/2;
-        // rotate around Y (using X/Z) and around X (using Y/Z) to simulate 3D
-        const cosA = Math.cos(angle);
-        const sinA = Math.sin(angle);
-        const cosB = Math.cos(angle*0.6);
-        const sinB = Math.sin(angle*0.6);
+        function resize(){
+            const w = canvas.clientWidth || canvas.offsetWidth;
+            const h = canvas.clientHeight || canvas.offsetHeight;
+            canvas.width = Math.max(300, Math.floor(w * DPR));
+            canvas.height = Math.max(150, Math.floor(h * DPR));
+            ctx.setTransform(DPR,0,0,DPR,0,0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
 
-        const dx = p.x - cx;
-        const dy = p.y - cy;
-        // Y-axis rotation
-        const rx = cosA * dx - sinA * p.z;
-        const rz = sinA * dx + cosA * p.z;
-        // X-axis rotation
-        const ry = cosB * dy - sinB * rz;
-        const rz2 = sinB * dy + cosB * rz;
-
-        const perspective = 600 / (600 + rz2);
-        return { x: cx + rx * perspective, y: cy + ry * perspective, scale: perspective };
-    }
-
-    function step(t){
-        const w = areaW();
-        const h = areaH();
-        ctx.clearRect(0,0,w,h);
-        angle += 0.0018; // rotation speed
-
-        // slight organic motion per point
-        for(let i=0;i<points.length;i++){
-            const p = points[i];
-            p.x += Math.sin((t/1000) + i) * 0.12;
-            p.y += Math.cos((t/1200) + i*1.1) * 0.08;
+        // create points
+        const N = Math.max(18, Math.floor((canvas.clientWidth||300)/30));
+        const points = [];
+        const areaW = () => canvas.clientWidth || canvas.offsetWidth;
+        const areaH = () => canvas.clientHeight || canvas.offsetHeight;
+        for(let i=0;i<N;i++){
+            points.push({ x: Math.random()*areaW(), y: Math.random()*areaH(), z: Math.random()*800 - 400 });
         }
 
-        const proj = points.map(p => project(p, angle));
+        let angle = Math.random()*Math.PI*2;
 
-        // draw lines between nearby points
-        for(let i=0;i<proj.length;i++){
-            for(let j=i+1;j<proj.length;j++){
-                const a = proj[i];
-                const b = proj[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const dist = Math.hypot(dx, dy);
-                if(dist < 160){
-                    const alpha = (1 - dist/160) * 0.6 * Math.min(a.scale, b.scale);
-                    ctx.strokeStyle = `rgba(192,193,255,${alpha})`;
-                    ctx.lineWidth = 1 * (a.scale + b.scale) * 0.6;
-                    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        function project(p, angle){
+            const cx = areaW()/2;
+            const cy = areaH()/2;
+            const cosA = Math.cos(angle);
+            const sinA = Math.sin(angle);
+            const cosB = Math.cos(angle*0.6);
+            const sinB = Math.sin(angle*0.6);
+            const dx = p.x - cx;
+            const dy = p.y - cy;
+            const rx = cosA * dx - sinA * p.z;
+            const rz = sinA * dx + cosA * p.z;
+            const ry = cosB * dy - sinB * rz;
+            const rz2 = sinB * dy + cosB * rz;
+            const perspective = 600 / (600 + rz2);
+            return { x: cx + rx * perspective, y: cy + ry * perspective, scale: perspective };
+        }
+
+        function step(t){
+            const w = areaW();
+            const h = areaH();
+            ctx.clearRect(0,0,w,h);
+            angle += 0.0016;
+            for(let i=0;i<points.length;i++){
+                const p = points[i];
+                p.x += Math.sin((t/1000) + i) * 0.08;
+                p.y += Math.cos((t/1200) + i*1.1) * 0.06;
+            }
+            const proj = points.map(p => project(p, angle));
+            for(let i=0;i<proj.length;i++){
+                for(let j=i+1;j<proj.length;j++){
+                    const a = proj[i];
+                    const b = proj[j];
+                    const dx = a.x - b.x; const dy = a.y - b.y;
+                    const dist = Math.hypot(dx, dy);
+                    if(dist < 140){
+                        const alpha = (1 - dist/140) * 0.55 * Math.min(a.scale, b.scale);
+                        ctx.strokeStyle = `rgba(192,193,255,${alpha})`;
+                        ctx.lineWidth = 1 * (a.scale + b.scale) * 0.5;
+                        ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                    }
                 }
             }
+            for(let i=0;i<proj.length;i++){
+                const p = proj[i];
+                ctx.beginPath(); ctx.fillStyle = `rgba(192,193,255,${0.9 * p.scale})`;
+                ctx.arc(p.x, p.y, 3.5 * p.scale, 0, Math.PI*2); ctx.fill();
+            }
+            requestAnimationFrame(step);
         }
-
-        // draw nodes
-        for(let i=0;i<proj.length;i++){
-            const p = proj[i];
-            ctx.beginPath();
-            ctx.fillStyle = `rgba(192,193,255,${0.9 * p.scale})`;
-            ctx.arc(p.x, p.y, 3.5 * p.scale, 0, Math.PI*2);
-            ctx.fill();
-        }
-
         requestAnimationFrame(step);
     }
-
-    requestAnimationFrame(step);
 });
 </script>
 </body></html>
